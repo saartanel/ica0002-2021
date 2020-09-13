@@ -1,0 +1,9 @@
+- name: update repo cache and update "nginx" to latest
+  apt:
+    name: nginx
+    state: latest
+    update-cache: yes
+- name: copy index file to dst
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html

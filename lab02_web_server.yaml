@@ -1,0 +1,7 @@
+---
+  - name: SSH keys and index.html copy, Nginx install
+    hosts: web_servers
+    become: yes
+    roles:
+      - users
+      - nginx

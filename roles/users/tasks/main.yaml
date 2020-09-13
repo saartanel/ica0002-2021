@@ -1,0 +1,16 @@
+- name: create user juri
+  user:
+    name: juri
+- name: add ssh key to juri
+  authorized_key:
+    user: juri
+    state: present
+    key: https://github.com/hudolejev.keys
+- name: create user roman
+  user:
+    name: roman
+- name: add ssh key to roman
+  authorized_key:
+    user: roman
+    state: present
+    key: https://github.com/romankuchin.keys
