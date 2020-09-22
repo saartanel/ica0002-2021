@@ -1,0 +1,13 @@
+- name: Install uwsgi
+  apt:
+    pkg:
+    - uwsgi
+    - uwsgi-plugin-python3
+    update_cache: yes
+ 
+- name: Move agama.ini to dest
+  copy:
+    src: ./agama.ini
+    dest: /etc/uwsgi/apps-enabled
+  notify:
+  - restart uwsgi

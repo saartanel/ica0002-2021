@@ -3,7 +3,9 @@
     name: nginx
     state: latest
     update-cache: yes
-- name: copy index file to dst
+- name: copy config file to dst
   copy:
-    src: index.html
-    dest: /var/www/html/index.html
+    src: default
+    dest: /etc/nginx/sites-enabled
+  notify:
+  - restart nginx
