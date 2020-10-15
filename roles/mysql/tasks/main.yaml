@@ -1,0 +1,32 @@
+- name: Install mysql
+  apt:
+    pkg:
+    - mysql-server
+    - python3-pymysql
+    state: latest
+    update_cache: yes
+
+- name: debugging mysql-python
+  apt: name=python3-mysqldb state=present
+
+- name: Override mysqld config
+  template:
+    src: ./override.cnf
+    dest: /etc/mysql/mysql.conf.d
+  notify:
+  - restart mysql
+
+- name: MySQL database
+  mysql_db:
+    name: "{{ mysql_database }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    state: present
+
+- name: MySQL user
+  mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    priv: "{{ mysql_database }}.*:ALL"
+    host: "%"
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock

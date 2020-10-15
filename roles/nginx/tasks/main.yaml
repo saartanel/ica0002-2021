@@ -3,9 +3,11 @@
     name: nginx
     state: latest
     update-cache: yes
+
 - name: copy config file to dst
   copy:
     src: default
     dest: /etc/nginx/sites-enabled
   notify:
   - restart nginx
+  

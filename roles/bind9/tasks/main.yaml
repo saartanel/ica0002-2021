@@ -1,0 +1,29 @@
+- name: Install Bind9
+  apt:
+    pkg:
+    - bind9
+    state: latest
+    update_cache: yes
+
+- name: Ensure Bind9 is running
+  service:
+    name: bind9
+    state: started
+    enabled: yes
+
+- name: Copy named.conf.options to /etc/bind
+  template:
+    src: ./named.conf.options.j2
+    dest: /etc/bind/named.conf.options
+  notify:
+  - restart bind9
+
+- name: Copy db.toenail to /etc/bind
+  template:
+    src: ./db.toenail
+    dest: /etc/bind
+  notify:
+  - restart bind9
+
+- name: rndc reload
+  shell: rndc reload
