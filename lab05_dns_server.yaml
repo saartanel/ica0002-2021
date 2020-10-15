@@ -6,8 +6,6 @@
   
 - name: Bind9 server
   become: yes
-  vars_files:
-    - group_vars/dns_var.yaml
   hosts:
     saartanel-2
   roles:

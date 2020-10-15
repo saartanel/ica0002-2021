@@ -1,0 +1,22 @@
+  - name: Setup
+    hosts: all
+    tasks:
+      - setup:
+  
+  - name: DNS
+    hosts: dns_servers
+    roles:
+      - bind9:
+
+  - name: Resolvers
+    hosts: all
+    become: yes
+    roles:
+      - resolver
+      - node_exporter
+
+- name: Prometheus
+  hosts: prometheus
+  become: yes
+  roles:
+    - prometheus

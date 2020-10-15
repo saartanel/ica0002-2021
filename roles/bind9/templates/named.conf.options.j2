@@ -20,7 +20,7 @@ options {
   auth-nxdomain no;    # conform to RFC1035
 };
 
-zone "toenail.ts" {
+zone "{{ domain }}" {
   type master;
   file "/etc/bind/db.toenail";
 };

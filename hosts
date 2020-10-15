@@ -9,3 +9,6 @@ saartanel-2
 
 [app_servers]
 saartanel-1
+
+[prometheus]
+saartanel-2

@@ -1,11 +1,16 @@
 $TTL    604800
-toenail.ts.       IN      SOA     vm2.toenail.ts. ubuntu.toenail.ts. (
+{% for vm in groups['dns_servers'] %}
+{{ domain }}.   IN      SOA     {{ vm }}.{{ domain }}. {{ username }}.{{ domain }}.(
+{% endfor %}
                               2         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
-toenail.ts.       IN      NS      vm2
-vm1       IN      A       192.168.42.76
-vm2       IN      A       192.168.42.26
+{% for vm in groups['dns_servers'] %}
+{{ domain }}.   IN      NS      {{ vm }}
+{% endfor %}
+{% for vm in groups['all'] %}
+{{ vm }}       IN      A       {{ hostvars[vm]['ansible_default_ipv4']['address'] }}
+{% endfor %}
