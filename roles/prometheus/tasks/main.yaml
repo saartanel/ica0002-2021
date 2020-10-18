@@ -1,0 +1,20 @@
+---
+- name: Install prometheus
+  apt:
+    pkg: 
+      - prometheus
+    state: latest
+    update_cache: yes
+
+- name: Ensure prometheus is running
+  service:
+    name: prometheus
+    state: started
+
+- name: Copy ARGS file
+  template:
+    src: prometheus
+    dest: /etc/default/prometheus
+  notify:
+    - Restart prometheus
+    - Restart nginx

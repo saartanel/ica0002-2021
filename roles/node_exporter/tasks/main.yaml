@@ -1,7 +1,7 @@
 ---
 - name: Exporter packages
   apt:
-    name: 
+    pkg: 
       - prometheus-node-exporter
       - nginx
     update_cache: yes
@@ -15,7 +15,7 @@
 
 - name: Nginx config
   template:
-    src: node_exporter
+    src: node_exporter.j2
     dest: /etc/nginx/sites-enabled/node_exporter
   notify:
     - Restart nginx
