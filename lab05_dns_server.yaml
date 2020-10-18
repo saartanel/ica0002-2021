@@ -2,7 +2,6 @@
   hosts: all
   tasks:
     - setup:
-    - debug:
   
 - name: Bind9 server
   become: yes
@@ -10,3 +9,11 @@
     saartanel-2
   roles:
     - bind9
+  
+- name: change resolv.conf
+  become: yes
+  hosts: all
+  tasks:
+    - template:
+        src: ./roles/bind9/templates/resolv.conf.j2
+        dest: /etc/resolv.conf

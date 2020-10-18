@@ -20,6 +20,6 @@ hosts:
 username: ubuntu
 groups:
   dns_servers:
-    - vm2
+    - 192.168.42.16
   prometheus:
-    - vm2
+    - saartanel-2
