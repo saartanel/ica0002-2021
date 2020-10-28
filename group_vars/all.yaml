@@ -1,4 +1,4 @@
-mysql_host: 192.168.42.26
+mysql_host: 192.168.42.81
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -22,3 +22,4 @@ groups:
   dns_servers:
     - saartanel-2
 prometheus_host: saartanel-1
+backup: 192.168.42.39

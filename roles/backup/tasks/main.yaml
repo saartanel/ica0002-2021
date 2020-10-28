@@ -1,0 +1,5 @@
+- name: Create user backup with SSH key
+  user:
+    name: backup
+    shell: /bin/bash
+    generate_ssh_key: yes
