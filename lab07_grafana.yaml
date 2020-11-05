@@ -1,0 +1,7 @@
+- name: Grafana
+  hosts: dns_servers
+  become: yes
+  gather_facts: no
+  roles:
+    - bind_exporter
+    - mysql_exporter

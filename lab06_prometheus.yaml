@@ -7,7 +7,7 @@
   hosts: dns_servers
   become: yes
   roles:
-    - bind9
+    - bind
 
 - name: Resolvers
   hosts: all

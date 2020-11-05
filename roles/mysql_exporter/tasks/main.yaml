@@ -1,0 +1,10 @@
+- name: Package
+  apt:
+    pkg: 
+    - prometheus-mysqld-exporter
+
+- name: Enabled
+  service:
+    name: prometheus-mysqld-exporter
+    state: started
+    enabled: yes
