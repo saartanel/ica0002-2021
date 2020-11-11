@@ -3,7 +3,30 @@
     pkg: 
     - prometheus-mysqld-exporter
 
-- name: Enabled
+- name: Copy my.cnf
+  template:
+    src: my.cnf.j2
+    dest: /var/lib/prometheus/.my.cnf
+  notify:
+    - restart mysql_exporter
+  
+- name: Create /opt/agama
+  file:
+    path: /var/lib/prometheus/.my.cnf
+    owner: prometheus
+    mode: '0700'
+  notify:
+    - restart mysql_exporter
+
+- name: create MySQL user
+  mysql_user:
+    name: "{{ mysql_exporter_user }}"
+    state: present
+    password: "{{ mysql_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    priv: "*.*:PROCESS,REPLICATION CLIENT,SELECT"
+
+- name: Start mysql_exporter
   service:
     name: prometheus-mysqld-exporter
     state: started

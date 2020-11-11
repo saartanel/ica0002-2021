@@ -15,3 +15,6 @@ saartanel-2
 
 [prometheus]
 saartanel-1
+
+[grafana]
+saartanel-2

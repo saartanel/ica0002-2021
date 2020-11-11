@@ -1,0 +1,7 @@
+- name: systemctl daemon-reload
+  shell: systemctl daemon-reload
+
+- name: restart grafana-server
+  service:
+    name: grafana-server
+    state: restarted

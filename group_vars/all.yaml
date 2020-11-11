@@ -23,3 +23,4 @@ groups:
     - saartanel-2
 prometheus_host: saartanel-1
 backup: 192.168.42.39
+mysql_exporter_user: prometheus

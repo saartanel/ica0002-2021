@@ -1,7 +1,35 @@
-- name: Grafana
+- name: Bind_exporter
   hosts: dns_servers
   become: yes
   gather_facts: no
   roles:
     - bind_exporter
+  tags:
+    - bind_exporter
+  
+- name: Mysql_exporter
+  hosts: db_servers
+  become: yes
+  gather_facts: no
+  roles:
     - mysql_exporter
+  tags:
+    - mysql_exporter
+
+- name: Nginx_exporter
+  hosts: web_servers
+  become: yes
+  gather_facts: no
+  roles:
+    - nginx_exporter
+  tags:
+    - nginx_exporter
+
+- name: Grafana
+  hosts: grafana
+  become: yes
+  gather_facts: no
+  roles:
+    - grafana
+  tags:
+    - grafana
