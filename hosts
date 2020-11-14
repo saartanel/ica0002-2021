@@ -18,3 +18,7 @@ saartanel-1
 
 [grafana]
 saartanel-2
+
+[nginx_exporters]
+saartanel-1
+saartanel-2

@@ -9,11 +9,3 @@
     saartanel-2
   roles:
     - bind
-  
-- name: change resolv.conf
-  become: yes
-  hosts: all
-  tasks:
-    - template:
-        src: ./roles/bind9/templates/resolv.conf.j2
-        dest: /etc/resolv.conf

@@ -19,8 +19,50 @@ hosts:
   - 127.0.0.0/8
 username: ubuntu
 groups:
+  prometheus:
+    - saartanel-1
   dns_servers:
     - saartanel-2
+  grafana:
+    - saartanel-2
+  db_servers:
+    - saartanel-2
+  web_servers:
+    - saartanel-1
+  nginx_exporters:
+    - saartanel-1
+    - saartanel-2
 prometheus_host: saartanel-1
+ansible_host: saartanel-2
+ansible_post: 3000
 backup: 192.168.42.39
 mysql_exporter_user: prometheus
+
+prometheus_jobs:
+  - name: node
+    targets: "{{ groups['all'] }}"
+    port: 9100
+  - name: bind
+    targets:
+      - ns
+    port: 9119
+  - name: mysql
+    targets:
+      - db
+    port: 9104
+  - name: www
+    targets:
+      - www
+    port: 9113
+
+dns_cnames:
+  - cname: ns
+    real: "{{ groups['dns_servers'][0] }}"
+  - cname: prometheus
+    real: "{{ groups['prometheus'][0] }}"
+  - cname: db
+    real: "{{ groups['db_servers'][0] }}"
+  - cname: www
+    real: "{{ groups['web_servers'][0] }}"
+  - cname: grafana
+    real: "{{ groups['grafana'][0] }}"

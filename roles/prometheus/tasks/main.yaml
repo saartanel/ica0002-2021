@@ -18,3 +18,11 @@
   notify:
     - Restart prometheus
     - Restart nginx
+
+- name: Copy jobs file
+  template:
+    src: prometheus.yaml.j2
+    dest: /etc/prometheus/prometheus.yml
+  notify:
+    - Restart prometheus
+    - Restart nginx

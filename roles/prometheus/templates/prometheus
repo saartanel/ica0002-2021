@@ -1,1 +1,1 @@
-ARGS="--web.external-url=http://{{ hostvars['saartanel-1' ]['ansible_default_ipv4']['address'] }}:5880/prometheus"
+ARGS="--web.external-url=http://{{ hostvars['saartanel-1']['ansible_default_ipv4']['address'] }}:5880/prometheus"
