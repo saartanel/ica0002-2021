@@ -54,6 +54,10 @@ prometheus_jobs:
     targets:
       - www
     port: 9113
+  - name: influxdb
+    targets:
+      - influxdb
+    port: 8086
 
 dns_cnames:
   - cname: ns
@@ -66,3 +70,5 @@ dns_cnames:
     real: "{{ groups['web_servers'][0] }}"
   - cname: grafana
     real: "{{ groups['grafana'][0] }}"
+  - cname: influxdb
+    real: "{{ groups['influxdb'][0] }}"

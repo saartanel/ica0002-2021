@@ -22,3 +22,6 @@ saartanel-2
 [nginx_exporters]
 saartanel-1
 saartanel-2
+
+[influxdb]
+saartanel-2

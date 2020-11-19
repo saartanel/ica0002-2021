@@ -1,0 +1,10 @@
+[Unit]
+Description=Pinger for InfluxDB
+
+[Service]
+Restart=always
+User=pinger
+ExecStart=/usr/local/bin/pinger.sh
+
+[Install]
+WantedBy=multi-user.target

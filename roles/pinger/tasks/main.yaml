@@ -1,0 +1,37 @@
+- name: Create user pinger
+  user:
+    name: pinger
+    shell: /bin/bash
+    system: yes
+
+- name: Create /etc/pinger directory
+  file:
+    path: /etc/pinger
+    state: directory
+    mode: '0755'
+
+- name: Copy pinger.conf
+  template:
+    src: ./pinger.conf.j2
+    dest: /etc/pinger/pinger.conf
+
+- name: Download pinger.sh and place it to dest
+  template:
+    src: ./pinger.sh
+    dest: /usr/local/bin/pinger.sh
+    owner: pinger
+    mode: '0744'
+
+- name: Create pinger service
+  template:
+    src: ./pinger.service.j2
+    dest: /etc/systemd/system/pinger.service
+  notify:
+    - systemctl daemon-reload
+    - restart pinger
+
+- name: Enable pinger service
+  service:
+    name: pinger
+    state: started
+    enabled: yes
