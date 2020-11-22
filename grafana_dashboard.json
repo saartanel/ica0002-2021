@@ -385,7 +385,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(node_memory_Active[5m])/1000",
+          "expr": "100 * (1 - ((avg_over_time(node_memory_MemFree[24h]) + avg_over_time(node_memory_Cached[24h]) + avg_over_time(node_memory_Buffers[24h])) / avg_over_time(node_memory_MemTotal[24h])))",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -580,7 +580,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(node_cpu{cpu=\"cpu0\",mode=\"system\"}[5m])",
+          "expr": "100 - (avg by (instance) (rate(node_cpu{job=\"node\",mode=\"idle\"}[5m])) * 100)",
           "format": "time_series",
           "interval": "",
           "legendFormat": "",
@@ -863,7 +863,7 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},

@@ -5,6 +5,7 @@ saartanel-2 ansible_host=193.40.156.86 ansible_port=8122 ansible_ssh_user=ubuntu
 saartanel-1
 
 [db_servers]
+saartanel-1
 saartanel-2
 
 [app_servers]

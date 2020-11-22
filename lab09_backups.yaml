@@ -1,0 +1,12 @@
+- name: Setup
+  hosts: all
+  tasks:
+    - setup:
+
+- name: Backup user
+  hosts: all
+  become: yes
+  roles:
+    - backup
+  tags:
+    - backup

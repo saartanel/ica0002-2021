@@ -11,8 +11,8 @@
 
 - name: Override mysqld config
   template:
-    src: ./override.cnf
-    dest: /etc/mysql/mysql.conf.d
+    src: ./override.cnf.j2
+    dest: /etc/mysql/mysql.conf.d/override.cnf
   notify:
   - restart mysql
 
@@ -27,6 +27,15 @@
     name: "{{ mysql_user }}"
     password: "{{ mysql_password }}"
     priv: "{{ mysql_database }}.*:ALL"
+    host: "%"
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Create Replication user
+  mysql_user:
+    name: "{{ mysql_replication_user }}"
+    password: "{{ mysql_password }}"
+    priv: "*.*:REPLICATION SLAVE"
     host: "%"
     state: present
     login_unix_socket: /var/run/mysqld/mysqld.sock

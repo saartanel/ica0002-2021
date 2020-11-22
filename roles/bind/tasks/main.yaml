@@ -24,9 +24,7 @@
     dest: /etc/bind
   notify:
   - restart bind9
-
-- name: rndc reload
-  shell: rndc reload
+  - rndc reload
 
 - name: change resolv.conf
   template:
