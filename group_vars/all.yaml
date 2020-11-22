@@ -49,6 +49,7 @@ prometheus_jobs:
   - name: mysql
     targets:
       - db
+      - db1
     port: 9104
   - name: www
     targets:
@@ -66,6 +67,8 @@ dns_cnames:
     real: "{{ groups['prometheus'][0] }}"
   - cname: db
     real: "{{ groups['db_servers'][0] }}"
+  - cname: db1
+    real: "{{ groups['db_servers'][1] }}"
   - cname: www
     real: "{{ groups['web_servers'][0] }}"
   - cname: grafana
