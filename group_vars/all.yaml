@@ -75,6 +75,10 @@ dns_cnames:
     real: "{{ groups['grafana'][0] }}"
   - cname: influxdb
     real: "{{ groups['influxdb'][0] }}"
+  - cname: docker
+    real: "{{ groups['docker'][0] }}"
+  - cname: docker1
+    real: "{{ groups['docker'][1] }}"
 
 mysql_replication_user: replication
 mysql_replication_password: !vault |
@@ -86,3 +90,4 @@ mysql_replication_password: !vault |
           3531
 mysql_app_database: agama
 mysql_master_host: saartanel-1
+grafana_port: 3001

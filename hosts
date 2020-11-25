@@ -26,3 +26,7 @@ saartanel-2
 
 [influxdb]
 saartanel-2
+
+[docker]
+saartanel-1
+saartanel-2

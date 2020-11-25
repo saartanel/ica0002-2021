@@ -1,0 +1,23 @@
+- name: Setup
+  hosts: all
+  tasks:
+    - setup:
+
+- name: Docker
+  hosts: docker
+  become: yes
+  gather_facts: no
+  roles:
+    - docker
+    - node_exporter
+  tags:
+    - docker
+  
+- name: Grafana Docker
+  hosts: grafana
+  become: yes
+  gather_facts: no
+  roles:
+    - grafana_docker
+  tags:
+    - grafana_docker
