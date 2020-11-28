@@ -21,3 +21,12 @@
     - grafana_docker
   tags:
     - grafana_docker
+
+- name: Agama Docker
+  hosts: app_servers
+  become: yes
+  gather_facts: no
+  roles:
+    - agama_docker
+  tags:
+    - agama_docker

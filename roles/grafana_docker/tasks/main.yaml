@@ -5,7 +5,7 @@
     owner: 472
     group: 472
     recurse: true
-
+    
 - name: Create grafana Container
   docker_container:
     name: grafana
@@ -18,28 +18,6 @@
       GF_SERVER_ROOT_URL: "http://localhost:{{ grafana_port }}/grafana"
       GF_SERVER_SERVE_FROM_SUB_PATH: "true"
 
-- name: Restart pinger
-  service:
-    name: pinger
-    state: restarted
-
-- name: Restart InfluxDB
-  service:
-    name: influxdb
-    state: restarted
-
-- name: Restart Telegraf
-  service:
-    name: telegraf
-    state: restarted
-
-- name: Restart MySQL exporter
-  service:
-    name: prometheus-mysqld-exporter
-    state: restarted
-
-
-- name: Restart node exporter
-  service:
-    name: prometheus-node-exporter
-    state: restarted
+# - name: Copy grafana.db file from backup
+#  synchronize:
+#    src: ./grafana.db

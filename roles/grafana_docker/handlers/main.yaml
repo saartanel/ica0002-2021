@@ -1,0 +1,25 @@
+- name: restart pinger
+  service:
+    name: pinger
+    state: restarted
+
+- name: restart InfluxDB
+  service:
+    name: influxdb
+    state: restarted
+
+- name: restart Telegraf
+  service:
+    name: telegraf
+    state: restarted
+
+- name: restart MySQL exporter
+  service:
+    name: prometheus-mysqld-exporter
+    state: restarted
+
+
+- name: restart node exporter
+  service:
+    name: prometheus-node-exporter
+    state: restarted
