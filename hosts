@@ -3,6 +3,7 @@ saartanel-2 ansible_host=193.40.156.86 ansible_port=8122 ansible_ssh_user=ubuntu
 
 [web_servers]
 saartanel-1
+saartanel-2
 
 [db_servers]
 saartanel-1
@@ -28,5 +29,13 @@ saartanel-2
 saartanel-2
 
 [docker]
+saartanel-1
+saartanel-2
+
+[haproxy]
+saartanel-1
+saartanel-2
+
+[keepalived]
 saartanel-1
 saartanel-2

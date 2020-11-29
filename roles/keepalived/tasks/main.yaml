@@ -1,0 +1,31 @@
+- name: Install Keepalive package
+  apt:
+    pkg:
+      - keepalived
+
+- name: Copy keepalive.conf
+  template:
+    src: ./keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
+  notify: restart keepalived
+
+- name: Download Keepalived exporter binary
+  unarchive:
+    src: https://github.com/cafebazaar/keepalived-exporter/releases/download/v1.1.0/keepalived-exporter-1.1.0.linux-amd64.tar.gz
+    dest: /usr/local/bin
+    extra_opts: [--strip-components=1]
+    remote_src: yes
+
+- name: Create Keepalived service
+  template:
+    src: keepalived-exporter.service.j2
+    dest: /etc/systemd/system/keepalived-exporter.service
+  notify:
+    - systemctl daemon-reload
+    - restart keepalived-exporter
+
+- name: Enable exporter service
+  service:
+    name: keepalived-exporter
+    state: started
+    enabled: yes

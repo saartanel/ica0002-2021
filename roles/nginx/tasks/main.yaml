@@ -5,7 +5,7 @@
     update-cache: yes
 
 - name: copy config file to dst
-  templates:
+  template:
     src: node_exporter.j2
     dest: /etc/nginx/sites-enabled
   notify:

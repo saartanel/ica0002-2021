@@ -51,9 +51,14 @@ prometheus_jobs:
       - db1
     port: 9104
   - name: www
-    targets:
-      - www
+    targets: "{{ groups['all'] }}"
     port: 9113
+  - name: keepalived
+    targets: "{{ groups['all'] }}"
+    port: 9165
+  - name: haproxy
+    targets: "{{ groups['all'] }}"
+    port: 9101
 
 dns_cnames:
   - cname: ns
@@ -74,6 +79,14 @@ dns_cnames:
     real: "{{ groups['docker'][0] }}"
   - cname: docker1
     real: "{{ groups['docker'][1] }}"
+  - cname: haproxy1
+    real: "{{ groups['haproxy'][0] }}"
+  - cname: haproxy2
+    real: "{{ groups['haproxy'][1] }}"
+  - cname: keepalived1
+    real: "{{ groups['keepalived'][0] }}"
+  - cname: keepalived2
+    real: "{{ groups['keepalived'][1] }}"
 
 mysql_replication_user: replication
 mysql_replication_password: !vault |
@@ -87,3 +100,4 @@ mysql_app_database: agama
 mysql_master_host: saartanel-1
 grafana_port: 3001
 agama_port: 8000
+agama_container_per_vm: 1
