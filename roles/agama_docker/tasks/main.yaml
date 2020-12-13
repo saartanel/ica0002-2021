@@ -1,7 +1,14 @@
-- name: Create Agama folder for Docker
+- name: Create system user named agama
+  user:
+    name: agama
+    state: present
+    system: yes
+
+- name: Create directory named agama
   file:
     path: /opt/agama
     state: directory
+    owner: agama
 
 - name: Download Agama DockerFile
   get_url:
@@ -23,4 +30,4 @@
     ports:
       - "{{ agama_port }}:8000"
     env:
-      AGAMA_DATABASE_URI: mysql://{{ mysql_user}}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}
+      AGAMA_DATABASE_URI: mysql://{{ mysql_user }}:{{ mysql_password }}@{{ mysql_host }}/{{ mysql_database }}

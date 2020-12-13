@@ -19,3 +19,8 @@
     dest: /etc/nginx/sites-enabled/node_exporter
   notify:
     - Restart nginx
+
+- name: change resolv.conf
+  template:
+    src: ./resolv.conf.j2
+    dest: /etc/resolv.conf

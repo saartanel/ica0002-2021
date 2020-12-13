@@ -7,7 +7,6 @@
 - name: copy config file to dst
   template:
     src: node_exporter.j2
-    dest: /etc/nginx/sites-enabled
+    dest: /etc/nginx/sites-enabled/node_exporter
   notify:
   - restart nginx
-  

@@ -1,4 +1,4 @@
-mysql_host: 192.168.42.58
+mysql_host: 192.168.42.114
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -99,5 +99,5 @@ mysql_replication_password: !vault |
 mysql_app_database: agama
 mysql_master_host: saartanel-1
 grafana_port: 3001
-agama_port: 8000
+agama_port: 8001
 agama_container_per_vm: 1
