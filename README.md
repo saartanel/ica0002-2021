@@ -10,4 +10,6 @@ lab8 - done
 lab9 - user done, need to create doc
 lab10 - not done
 lab11 - done
-lab12 - not done
+lab12 - done
+lab13 - done
+lab14 - done
