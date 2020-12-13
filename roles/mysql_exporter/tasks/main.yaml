@@ -1,7 +1,9 @@
-- name: Package
-  apt:
-    pkg: 
-    - prometheus-mysqld-exporter
+- name: Create /var/lib/prometheus
+  file:
+    path: /var/lib/prometheus
+    state: directory
+    owner: prometheus
+    mode: '0700'
 
 - name: Copy my.cnf
   template:
@@ -18,6 +20,11 @@
   notify:
     - restart mysql_exporter
 
+- name: Install mysqld exporter
+  apt:
+    pkg: 
+    - prometheus-mysqld-exporter
+
 - name: create MySQL user
   mysql_user:
     name: "{{ mysql_exporter_user }}"
@@ -25,9 +32,3 @@
     password: "{{ mysql_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     priv: "*.*:PROCESS,REPLICATION CLIENT,SELECT"
-
-- name: Start mysql_exporter
-  service:
-    name: prometheus-mysqld-exporter
-    state: started
-    enabled: yes

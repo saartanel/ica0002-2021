@@ -6,9 +6,6 @@
     state: latest
     update_cache: yes
 
-- name: debugging mysql-python
-  apt: name=python3-mysqldb state=present
-
 - name: Override mysqld config
   template:
     src: ./override.cnf.j2
@@ -39,3 +36,12 @@
     host: "%"
     state: present
     login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Copy slave script to master
+  template:
+    src: slave.sql
+    dest: /etc/mysql/slave.sql
+  when:
+    - inventory_hostname in groups['db_servers'][0]
+  notify:
+    - slave script

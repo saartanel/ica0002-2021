@@ -1,4 +1,4 @@
-mysql_host: 192.168.42.114
+mysql_host: saartanel-1
 mysql_database: agama
 mysql_user: agama
 mysql_password: !vault |
@@ -10,8 +10,7 @@ mysql_password: !vault |
           3531
 domain: toenail.ts
 forwarders:
-  - 193.40.56.245
-  - 193.40.0.12
+  - 8.8.8.8
 hosts:
   - 192.168.42.0/24
   - 127.0.0.0/8
@@ -34,7 +33,7 @@ groups:
 prometheus_host: saartanel-1
 ansible_host: saartanel-2
 ansible_port: 3000
-backup: 192.168.42.39
+backup: 192.168.42.31
 mysql_exporter_user: prometheus
 
 prometheus_jobs:
@@ -61,32 +60,21 @@ prometheus_jobs:
     port: 9101
 
 dns_cnames:
-  - cname: ns
-    real: "{{ groups['dns_servers'][0] }}"
-  - cname: prometheus
-    real: "{{ groups['prometheus'][0] }}"
-  - cname: db
-    real: "{{ groups['db_servers'][0] }}"
-  - cname: db1
-    real: "{{ groups['db_servers'][1] }}"
-  - cname: www
-    real: "{{ groups['web_servers'][0] }}"
-  - cname: grafana
-    real: "{{ groups['grafana'][0] }}"
-  - cname: influxdb
-    real: "{{ groups['influxdb'][0] }}"
-  - cname: docker
-    real: "{{ groups['docker'][0] }}"
-  - cname: docker1
-    real: "{{ groups['docker'][1] }}"
-  - cname: haproxy1
-    real: "{{ groups['haproxy'][0] }}"
-  - cname: haproxy2
-    real: "{{ groups['haproxy'][1] }}"
-  - cname: keepalived1
-    real: "{{ groups['keepalived'][0] }}"
-  - cname: keepalived2
-    real: "{{ groups['keepalived'][1] }}"
+  - { cname: 'ns1', real: "{{ groups['dns_servers'][0] }}" }
+  - { cname: 'ns2', real: "{{ groups['dns_servers'][1] }}" }
+  - { cname: 'prometheus', real: "{{ groups['prometheus'][0] }}" }
+  - { cname: 'db1', real: "{{ groups['db_servers'][0] }}" }
+  - { cname: 'db2', real: "{{ groups['db_servers'][1] }}" }
+  - { cname: 'www1', real: "{{ groups['web_servers'][0] }}" }
+  - { cname: 'www2', real: "{{ groups['web_servers'][1] }}" }
+  - { cname: 'grafana', real: "{{ groups['grafana'][0] }}" }
+  - { cname: 'influxdb', real: "{{ groups['influxdb'][0] }}" }
+  - { cname: 'docker1', real: "{{ groups['docker'][0] }}" }
+  - { cname: 'docker2', real: "{{ groups['docker'][1] }}" }
+  - { cname: 'haproxy1', real: "{{ groups['haproxy'][0] }}" }
+  - { cname: 'haproxy2', real: "{{ groups['haproxy'][1] }}" }
+  - { cname: 'keepalived1', real: "{{ groups['keepalived'][0] }}" }
+  - { cname: 'keepalived2', real: "{{ groups['keepalived'][1] }}" }
 
 mysql_replication_user: replication
 mysql_replication_password: !vault |
@@ -101,3 +89,19 @@ mysql_master_host: saartanel-1
 grafana_port: 3001
 agama_port: 8001
 agama_container_per_vm: 1
+dns_transfer_secret: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          30343065623866613963643831646561373733666439386636396531386563373461376236353732
+          6332663638333035373135303136393532356266653736650a623664666530363237663661373734
+          32633234303564336432653037326435356463613035363536383436363231653966626132336530
+          6135306231653234340a396566303163393063316661363063326134303130313761306462633462
+          37303234613765656537643935633437663365626564653937346465376132613264316530323633
+          3962356139633330616366333938616366363137343037616465
+dns_update_secret: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          35373530336337616465663631646238613532373432643931386337383138626334343334306564
+          6264383331666235366662396633346366383539396362300a313433613733386637636636343335
+          32663631383235373431633163646138643433373263343335306362313335373634313261336435
+          3135353464623733330a643831306163326562633839366665313666393264313664386434663130
+          65643664343237313164306465663036353537653063386338306333326263343435633538346632
+          3939663233356438626162386138386135653765363732316662

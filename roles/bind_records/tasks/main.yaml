@@ -1,0 +1,25 @@
+- name: Create cname records for bind9
+  nsupdate:
+    key_name: "dns_update"
+    key_secret: "{{ dns_update_secret }}"
+    key_algorithm: "hmac-sha256"
+    server: "{{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }}"
+    zone: "{{ domain }}"
+    record: "{{ item.cname }}"
+    value: "{{ item.real }}"
+    type: "CNAME"
+    state: present
+  loop: "{{ dns_cnames }}"
+  when: inventory_hostname in groups['dns_masters']
+
+- name: Create A record for backup
+  nsupdate:
+    key_name: "dns_update"
+    key_secret: "{{ dns_update_secret }}"
+    key_algorithm: "hmac-sha256"
+    server: "{{ hostvars[groups['dns_masters'][0]]['ansible_default_ipv4']['address'] }}"
+    zone: "{{ domain }}"
+    record: "backup"
+    value: "{{ backup }}"
+    state: present
+  when: inventory_hostname in groups['dns_masters']

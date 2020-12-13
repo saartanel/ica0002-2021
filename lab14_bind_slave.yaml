@@ -14,7 +14,7 @@
 
 - name: Bind9 records
   become: yes
-  hosts: dns_masters
+  hosts: dns_servers
   gather_facts: no
   roles:
     - bind_records

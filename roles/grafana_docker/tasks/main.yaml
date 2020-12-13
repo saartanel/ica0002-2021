@@ -2,9 +2,8 @@
   file:
     path: /opt/docker/grafana
     state: directory
-    owner: 472
-    group: 472
-    recurse: true
+    owner: "472"
+    group: "472"
     
 - name: Create grafana Container
   docker_container:
@@ -17,7 +16,3 @@
     env:
       GF_SERVER_ROOT_URL: "http://localhost:{{ grafana_port }}/grafana"
       GF_SERVER_SERVE_FROM_SUB_PATH: "true"
-
-# - name: Copy grafana.db file from backup
-#  synchronize:
-#    src: ./grafana.db

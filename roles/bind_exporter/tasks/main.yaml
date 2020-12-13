@@ -1,3 +1,19 @@
+- name: Create prometheus group for exporter
+  group:
+    name: prometheus
+    system: yes
+    state: present
+
+- name: Create prometheus user for exporter
+  user:
+    name: prometheus
+    group: prometheus
+    move_home: yes
+    home: /var/lib/prometheus
+    create_home: yes
+    system: yes
+    state: present
+
 - name: Package
   apt:
     pkg: 
