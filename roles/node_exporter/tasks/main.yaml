@@ -12,10 +12,3 @@
     state: absent
   notify:
     - Restart nginx
-
-- name: Nginx config
-  template:
-    src: node_exporter.j2
-    dest: /etc/nginx/sites-enabled/node_exporter
-  notify:
-    - Restart nginx
