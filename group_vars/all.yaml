@@ -12,6 +12,7 @@ domain: toenail.ts
 forwarders:
   - 8.8.8.8
 hosts:
+  - 192.168.1.0/24
   - 192.168.42.0/24
   - 127.0.0.0/8
   - 172.17.0.0/16
@@ -33,7 +34,7 @@ groups:
 prometheus_host: saartanel-1
 ansible_host: saartanel-2
 ansible_port: 3000
-backup: 192.168.42.31
+backup: 192.168.42.156
 mysql_exporter_user: prometheus
 
 prometheus_jobs:
@@ -41,32 +42,38 @@ prometheus_jobs:
     targets: "{{ groups['all'] }}"
     port: 9100
   - name: bind
-    targets:
-      - ns
+    targets: "{{ groups['all'] }}"
     port: 9119
   - name: mysql
     targets:
-      - db
       - db1
+      - db2
     port: 9104
   - name: www
-    targets: "{{ groups['all'] }}"
+    targets:
+      - www1
+      - www2
     port: 9113
   - name: keepalived
-    targets: "{{ groups['all'] }}"
+    targets:
+      - keepalived1
+      - keepalived2
     port: 9165
   - name: haproxy
-    targets: "{{ groups['all'] }}"
+    targets:
+      - haproxy1
+      - haproxy2
     port: 9101
 
 dns_cnames:
-  - { cname: 'ns1', real: "{{ groups['dns_servers'][0] }}" }
-  - { cname: 'ns2', real: "{{ groups['dns_servers'][1] }}" }
+  - { cname: 'ns1', real: "{{ groups['dns_slaves'][0] }}" }
+  - { cname: 'ns2', real: "{{ groups['dns_slaves'][1] }}" }
+  - { cname: 'ns3', real: "{{ groups['dns_masters'][0] }}" }
   - { cname: 'prometheus', real: "{{ groups['prometheus'][0] }}" }
   - { cname: 'db1', real: "{{ groups['db_servers'][0] }}" }
   - { cname: 'db2', real: "{{ groups['db_servers'][1] }}" }
-  - { cname: 'www1', real: "{{ groups['web_servers'][0] }}" }
-  - { cname: 'www2', real: "{{ groups['web_servers'][1] }}" }
+  - { cname: 'www1', real: "{{ groups['app_servers'][0] }}" }
+  - { cname: 'www2', real: "{{ groups['app_servers'][1] }}" }
   - { cname: 'grafana', real: "{{ groups['grafana'][0] }}" }
   - { cname: 'influxdb', real: "{{ groups['influxdb'][0] }}" }
   - { cname: 'docker1', real: "{{ groups['docker'][0] }}" }

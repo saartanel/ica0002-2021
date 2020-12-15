@@ -23,3 +23,30 @@
   service:
     name: prometheus-node-exporter
     state: restarted
+
+- name: Stop grafana Container
+  docker_container:
+    name: grafana
+    state: stopped
+
+- name: Delete default grafana.db
+  file:
+    path: /opt/docker/grafana/grafana.db
+    state: absent
+
+- name: Copy new db file to dest
+  copy:
+    src: /home/ubuntu/grafana.db
+    dest: /opt/docker/grafana/grafana.db
+    remote_src: yes
+
+- name: Grafana.db rights
+  file:
+    path: /opt/docker/grafana/grafana.db
+    owner: "472"
+    group: "472"
+
+- name: Start grafana Container
+  docker_container:
+    name: grafana
+    state: started

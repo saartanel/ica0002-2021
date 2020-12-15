@@ -13,7 +13,6 @@
     src: haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
   notify:
-#    - stop nginx
     - restart haproxy
 
 - name: Install docker.io
@@ -35,4 +34,9 @@
     image: quay.io/prometheus/haproxy-exporter:v0.9.0
     ports:
       - 9101:9101
-    command: --haproxy.scrape-uri="http://172.17.0.1:88/haproxy?stats;csv" 
+    command: --haproxy.scrape-uri="http://172.17.0.1:88/haproxy?stats;csv"
+
+- name: Start HAProxy exporter cintainer
+  docker_container:
+    name: haproxy_exporter
+    state: started

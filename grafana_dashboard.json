@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -59,7 +59,56 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "haproxy_server_up{backend=\"ha_agama\", instance=\"haproxy1.toenail.ts:9101\", job=\"haproxy\", server=\"saartanel-1_0\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "saartanel-1 node 0"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "haproxy_server_up{backend=\"ha_agama\", instance=\"haproxy1.toenail.ts:9101\", job=\"haproxy\", server=\"saartanel-2_0\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "saartanel-1 node 1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "haproxy_server_up{backend=\"ha_agama\", instance=\"haproxy2.toenail.ts:9101\", job=\"haproxy\", server=\"saartanel-1_0\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "saartanel-2 node 0"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "haproxy_server_up{backend=\"ha_agama\", instance=\"haproxy2.toenail.ts:9101\", job=\"haproxy\", server=\"saartanel-2_0\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "saartanel-2 node 1"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 6,
@@ -82,7 +131,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "expr": "haproxy_server_up",
@@ -106,7 +155,38 @@
         "defaults": {
           "custom": {}
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName"
+            },
+            "properties": []
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"db1.toenail.ts:9104\", job=\"mysql\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Master"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{instance=\"db2.toenail.ts:9104\", job=\"mysql\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Slave"
+              }
+            ]
+          }
+        ]
       },
       "fill": 1,
       "fillGradient": 0,
@@ -123,7 +203,7 @@
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -134,7 +214,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -229,7 +309,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -354,12 +434,41 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "nginx_up{instance=\"www1.toenail.ts:9113\", job=\"www\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "www-1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "nginx_up{instance=\"www2.toenail.ts:9113\", job=\"www\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "www-2"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -371,7 +480,7 @@
       "options": {
         "colorMode": "background",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -382,7 +491,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "expr": "nginx_up",
@@ -428,12 +537,53 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "bind_up{instance=\"saartanel-1.toenail.ts:9119\", job=\"bind\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "bind slave 1"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "bind_up{instance=\"saartanel-2.toenail.ts:9119\", job=\"bind\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "bind slave 2"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "bind_up{instance=\"saartanel-3.toenail.ts:9119\", job=\"bind\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "bind master"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -445,7 +595,7 @@
       "options": {
         "colorMode": "background",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -456,7 +606,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "expr": "bind_up",
@@ -509,7 +659,11 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
               }
             ]
           }
@@ -518,7 +672,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_up{instance=\"db.toenail.ts:9104\", job=\"mysql\"}"
+              "options": "mysql_up{instance=\"db1.toenail.ts:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -530,7 +684,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_up{instance=\"db1.toenail.ts:9104\", job=\"mysql\"}"
+              "options": "mysql_up{instance=\"db2.toenail.ts:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -551,7 +705,7 @@
       "options": {
         "colorMode": "background",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -562,7 +716,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "expr": "mysql_up",
@@ -591,8 +745,8 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 6,
-        "w": 12,
+        "h": 7,
+        "w": 6,
         "x": 12,
         "y": 7
       },
@@ -614,7 +768,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -638,6 +792,105 @@
       "timeRegions": [],
       "timeShift": null,
       "title": "CPU Load",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 7
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "100 * (node_memory_MemTotal - node_memory_MemAvailable) / node_memory_MemTotal",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Load",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -719,24 +972,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "haproxy_up{instance=\"saartanel-1.toenail.ts:9101\", job=\"haproxy\"}"
+              "options": "haproxy_up{instance=\"haproxy1.toenail.ts:9101\", job=\"haproxy\"}"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "Master HAProxy"
+                "value": "HAProxy master"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "haproxy_up{instance=\"saartanel-2.toenail.ts:9101\", job=\"haproxy\"}"
+              "options": "haproxy_up{instance=\"haproxy2.toenail.ts:9101\", job=\"haproxy\"}"
             },
             "properties": [
               {
                 "id": "displayName",
-                "value": "Backup HAProxy"
+                "value": "HAProxy backup"
               }
             ]
           }
@@ -763,7 +1016,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "expr": "haproxy_up",
@@ -801,7 +1054,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_global_variables_read_only{instance=\"db.toenail.ts:9104\", job=\"mysql\"}"
+              "options": "mysql_global_variables_read_only{instance=\"db1.toenail.ts:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -813,7 +1066,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_global_variables_read_only{instance=\"db1.toenail.ts:9104\", job=\"mysql\"}"
+              "options": "mysql_global_variables_read_only{instance=\"db2.toenail.ts:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -845,7 +1098,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "expr": "mysql_global_variables_read_only",
@@ -879,7 +1132,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_global_variables_server_id{instance=\"db.toenail.ts:9104\", job=\"mysql\"}"
+              "options": "mysql_global_variables_server_id{instance=\"db1.toenail.ts:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -891,7 +1144,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "mysql_global_variables_server_id{instance=\"db1.toenail.ts:9104\", job=\"mysql\"}"
+              "options": "mysql_global_variables_server_id{instance=\"db2.toenail.ts:9104\", job=\"mysql\"}"
             },
             "properties": [
               {
@@ -923,7 +1176,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "expr": "mysql_global_variables_server_id{job=\"mysql\"}",
@@ -943,105 +1196,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 13
-      },
-      "hiddenSeries": false,
-      "id": 4,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.3.4",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "100 * (node_memory_MemTotal - node_memory_MemAvailable) / node_memory_MemTotal",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Memory Load",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1054,17 +1208,18 @@
       "gridPos": {
         "h": 7,
         "w": 6,
-        "x": 0,
-        "y": 16
+        "x": 12,
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 6,
       "legend": {
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1075,7 +1230,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1147,10 +1302,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
+        "h": 9,
         "w": 6,
-        "x": 6,
-        "y": 16
+        "x": 18,
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 16,
@@ -1159,7 +1314,7 @@
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1170,7 +1325,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.4",
+      "pluginVersion": "7.3.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1226,6 +1381,88 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "keepalived_vrrp_state{iname=\"ha_agama\", instance=\"keepalived1.toenail.ts:9165\", intf=\"enp0s3\", ip_address=\"192.168.100.155/32\", job=\"keepalived\", vrid=\"1\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "saartanel-1 vrrp state"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "keepalived_vrrp_state{iname=\"ha_agama\", instance=\"keepalived2.toenail.ts:9165\", intf=\"enp0s3\", ip_address=\"192.168.100.155/32\", job=\"keepalived\", vrid=\"1\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "saartanel-2 vrrp state"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 16
+      },
+      "id": 30,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.5",
+      "targets": [
+        {
+          "expr": "keepalived_vrrp_state",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Panel Title",
+      "type": "stat"
     }
   ],
   "refresh": "5s",
@@ -1236,12 +1473,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "MySQL",
   "uid": "qSsiPzoMz",
-  "version": 11
+  "version": 2
 }

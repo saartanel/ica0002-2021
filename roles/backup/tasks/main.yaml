@@ -2,4 +2,5 @@
   user:
     name: backup
     shell: /bin/bash
-    generate_ssh_key: yes
+    groups: docker
+    generate_ssh_key: yes 

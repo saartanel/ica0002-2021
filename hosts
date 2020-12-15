@@ -1,15 +1,16 @@
-saartanel-1 ansible_host=193.40.156.86 ansible_port=11722 ansible_ssh_user=ubuntu ansible_python_interpreter=python3
-saartanel-2 ansible_host=193.40.156.86 ansible_port=16322 ansible_ssh_user=ubuntu ansible_python_interpreter=python3
+saartanel-1 ansible_host=193.40.156.86 ansible_port=4922 ansible_ssh_user=ubuntu ansible_python_interpreter=python3
+saartanel-2 ansible_host=193.40.156.86 ansible_port=7522 ansible_ssh_user=ubuntu ansible_python_interpreter=python3
+saartanel-3 ansible_host=193.40.156.86 ansible_port=17322 ansible_ssh_user=ubuntu ansible_python_interpreter=python3
 
 [dns_masters]
-saartanel-2
+saartanel-3
 
 [dns_slaves]
 saartanel-1
+saartanel-2
 
 [web_servers]
-saartanel-1
-saartanel-2
+saartanel-3
 
 [db_servers]
 saartanel-1
@@ -17,27 +18,29 @@ saartanel-2
 
 [app_servers]
 saartanel-1
+saartanel-2
 
 [dns_servers:children]
 dns_masters
 dns_slaves
 
 [prometheus]
-saartanel-1
+saartanel-3
 
 [grafana]
-saartanel-2
+saartanel-3
 
 [nginx_exporters]
 saartanel-1
 saartanel-2
 
 [influxdb]
-saartanel-2
+saartanel-3
 
 [docker]
 saartanel-1
 saartanel-2
+saartanel-3
 
 [haproxy]
 saartanel-1

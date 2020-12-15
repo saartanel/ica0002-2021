@@ -1,0 +1,1458 @@
+Script started on 2020-12-15 10:22:05+0200
+  weight 20                              
+  interval 1               
+}
+static_routes {                             
+  192.168.100.0/24 dev enp0s3
+}
+vrrp_instance haproxy {             
+  interface enp0s3
+  virtual_router_id 1
+  {% if inventory_hostname == 'saartanel-1' %}
+  priority 110
+  {% else %}
+  priority 100
+  {% endif %}
+  advert_int 1                           
+  virtual_ipaddress {                 
+      192.168.100.{{ hostvars['saartanel-1']['ansible_default_ipv4']['address'].split('.')[3] }}                    
+  }
+  unicast_peer {
+      {% for vm in groups['haproxy'] %}
+      {% if inventory_hostname != vm %}
+      {{  hostvars[vm]['ansible_default_ipv4']['address']  }}
+      {% endif %}
+      {% endfor %}
+  }
+  track_script {
+      check_haproxy
+  }
+}]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   weight 20                              
+
+Command 'weight' not found, but can be installed with:
+
+sudo apt install biosquid
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   interval 1               
+interval: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ static_routes {                             
+static_routes: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   192.168.100.0/24 dev enp0s3
+bash: 192.168.100.0/24: No such file or directory
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ vrrp_instance haproxy {             
+vrrp_instance: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   interface enp0s3
+interface: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   virtual_router_id 1
+virtual_router_id: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   {% if inventory_hostname == 'saartanel-1' %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   priority 110
+priority: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   {% else %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   priority 100
+priority: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   {% endif %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   advert_int 1                           
+advert_int: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   virtual_ipaddress {                 
+virtual_ipaddress: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       192.168.100.{{ hostvars['saartanel-1']['ansible_default_ipv4']['address'].split('.')[3] }}                     
+bash: syntax error near unexpected token `('
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   unicast_peer {
+unicast_peer: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% for vm in groups['haproxy'] %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% if inventory_hostname != vm %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {{  hostvars[vm]['ansible_default_ipv4']['address']  }}
+{{: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% endif %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% endfor %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   track_script {
+track_script: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       check_haproxy
+check_haproxy: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }vrrp_instance haproxy {             }[Kvrrp_instance haproxy {             }[Kvrrp_instance haproxy {             }[K[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }vrrp_instance haproxy {             }[Kstatic_routes {                             [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C}[Kssh ubuntu@193.40.156.86 -p14722[10Pcat ~/.ssh/id_rsa.pub [6Pd infra/ica0002..[Kansible-playbook test_ansible.yaml [13Pcat ~/.ssh/id_rsa.pub[C[13@ansible-playbook test_ansible.yaml[C[13Pcat ~/.ssh/id_rsa.pub[C[13@ansible-playbook test_ansible.yaml[C[13Pcat ~/.ssh/id_rsa.pub[C[13@ansible-playbook test_ansible.yaml[C[13Pcat ~/.ssh/id_rsa.pub[Cssh tanelsaar99@35.228.200.101ansible-playbook test_ansible.yaml [13Pcat ~/.ssh/id_rsa.pub[C[6@ansible-playbook infra.yaml[C[7@test_ansible[C[C[C[C[C[C[7Pinfra[C[C[C[C[C[C[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml 
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [setup] *************************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+TASK [bind : Install Bind9] **********************************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : Ensure Bind9 is running] ************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [bind : Copy named.conf.options to /etc/bind] ***********************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : Copy named.conf.local to /etc/bind] *************************************************************************************************
+[0;36mskipping: [saartanel-1][0m
+[0;36mskipping: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : Copy named.conf.local.slave to /etc/bind] *******************************************************************************************
+[0;36mskipping: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [bind : Copy db.toenail to /etc/bind] *******************************************************************************************************
+[0;36mskipping: [saartanel-1][0m
+[0;36mskipping: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : change resolv.conf] *****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+TASK [bind_records : Create cname records for bind9] *********************************************************************************************
+[0;32mok: [saartanel-3] => (item={'cname': 'ns1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'ns2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'ns3', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'prometheus', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'db1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'db2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'www1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'www2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'grafana', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'influxdb', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'docker1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'docker2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'haproxy1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'haproxy2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'keepalived1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'keepalived2', 'real': 'saartanel-2'})[0m
+
+TASK [bind_records : Create A record for backup] *************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+TASK [prometheus : Install prometheus] ***********************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [prometheus : Ensure prometheus is running] *************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [prometheus : Copy ARGS file] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [prometheus : Copy jobs file] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+TASK [bind_exporter : Create prometheus group for exporter] **************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind_exporter : Create prometheus user for exporter] ***************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind_exporter : Package] *******************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [bind_exporter : Enabled] *******************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Database server] ***************************************************************************************************************************
+
+TASK [mysql : Install mysql] *********************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : Override mysqld config] ************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : MySQL database] ********************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : MySQL user] ************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : Create Replication user] ***********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : Copy slave script to master] *******************************************************************************************************
+[0;36mskipping: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [mysql_exporter : Create /var/lib/prometheus] ***********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql_exporter : Copy my.cnf] **************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql_exporter : Create /opt/agama] ********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql_exporter : Install mysqld exporter] **************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [mysql_exporter : create MySQL user] ********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+TASK [nginx : update repo cache and update "nginx" to latest] ************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [nginx : copy config file to dst] ***********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [nginx_exporter : Download and untar exporter binary] ***************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [nginx_exporter : Create exporter service] **************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [nginx_exporter : Enable exporter service] **************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [node_exporter : Exporter packages] *********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : No default nginx] **********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : Nginx config] **************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+TASK [haproxy : Install haproxy package] *********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start haproxy service] ***********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [haproxy : HAProxy config] ******************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Install docker.io] ***************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start Docker service] ************************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [haproxy : HAProxy exporter] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+TASK [keepalived : Install Keepalive package] ****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Copy keepalive.conf] **********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Download Keepalived exporter binary] ******************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Create Keepalived service] ****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Enable exporter service] ******************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+TASK [rsyslog : Rsyslog config] ******************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+TASK [influxdb : Install InfluxDB and influxdb-client] *******************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [influxdb : Telegraf package] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [influxdb : Install Telegraf package] *******************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [influxdb : Telegraf config] ****************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Install fping] ********************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Create user pinger] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Create /etc/pinger directory] *****************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Copy pinger.conf] *****************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Download pinger.sh and place it to dest] ******************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Create pinger service] ************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Enable pinger service] ************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Docker] ************************************************************************************************************************************
+
+TASK [docker : Install docker.io] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [docker : Start Docker service] *************************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : Exporter packages] *********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : No default nginx] **********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : Nginx config] **************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+TASK [grafana_docker : Create folder for grafana] ************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [grafana_docker : Create grafana Container] *************************************************************************************************
+[0;33mchanged: [saartanel-3][0m
+
+TASK [grafana_docker : Start grafana Container] **************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [grafana_docker : Download grafana.db] ******************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+TASK [agama_docker : Create system user named agama] *********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Create directory named agama] ***********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Download Agama DockerFile] **************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Build Agama Docker image] ***************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [agama_docker : Create Agama Container] *****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;32msaartanel-1[0m                : [0;32mok=52  [0m changed=0    unreachable=0    failed=0    [0;36mskipped=2   [0m rescued=0    ignored=0   
+[0;32msaartanel-2[0m                : [0;32mok=51  [0m changed=0    unreachable=0    failed=0    [0;36mskipped=3   [0m rescued=0    ignored=0   
+[0;33msaartanel-3[0m                : [0;32mok=47  [0m [0;33mchanged=1   [0m unreachable=0    failed=0    [0;36mskipped=1   [0m rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ [H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -haproxythaproxy
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+TASK [haproxy : Install haproxy package] *********************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start haproxy service] ***********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : HAProxy config] ******************************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+TASK [haproxy : Install docker.io] ***************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start Docker service] ************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : HAProxy exporter] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start HAProxy exporter cintainer] ************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+RUNNING HANDLER [haproxy : restart haproxy] ******************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+PLAY [Docker] ************************************************************************************************************************************
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;33msaartanel-1[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33msaartanel-2[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-3[0m                : [0;32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -thaproxy[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -thaproxy
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+TASK [haproxy : Install haproxy package] *********************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start haproxy service] ***********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [haproxy : HAProxy config] ******************************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+TASK [haproxy : Install docker.io] ***************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start Docker service] ************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : HAProxy exporter] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start HAProxy exporter cintainer] ************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+RUNNING HANDLER [haproxy : restart haproxy] ******************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+PLAY [Docker] ************************************************************************************************************************************
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;33msaartanel-1[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33msaartanel-2[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-3[0m                : [0;32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ [H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -thaproxy[K[K[K[K[K[Kkeepalive[K[K[K[K[K[K[K[K[K[Kkeeplaive[K[K[K[K[Kalived
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+TASK [keepalived : Install Keepalive package] ****************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Copy keepalive.conf] **********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;33mchanged: [saartanel-1][0m
+
+TASK [keepalived : Download Keepalived exporter binary] ******************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Create Keepalived service] ****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Enable exporter service] ******************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+RUNNING HANDLER [keepalived : restart keepalived] ************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+PLAY [Docker] ************************************************************************************************************************************
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;33msaartanel-1[0m                : [0;32mok=7   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-2[0m                : [0;32mok=6   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-3[0m                : [0;32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -tkeepalived[Kansible-playbook infra.yaml -tkeepalived[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -tkeepalived
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+TASK [keepalived : Install Keepalive package] ****************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Copy keepalive.conf] **********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;33mchanged: [saartanel-1][0m
+
+TASK [keepalived : Download Keepalived exporter binary] *************************************************************************                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                **
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [docker : Start Docker service] *************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [node_exporter : Exporter packages] *********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [node_exporter : No default nginx] **********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [node_exporter : Nginx config] **************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+TASK [agama_docker : Create system user named agama] *********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Create directory named agama] ***********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Download Agama DockerFile] **************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Build Agama Docker image] ***************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Create Agama Container] *****************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;33msaartanel-1[0m                : [0;32mok=52  [0m [0;33mchanged=2   [0m unreachable=0    failed=0    [0;36mskipped=2   [0m rescued=0    ignored=0   
+[0;33msaartanel-2[0m                : [0;32mok=51  [0m [0;33mchanged=2   [0m unreachable=0    failed=0    [0;36mskipped=3   [0m rescued=0    ignored=0   
+[0;31msaartanel-3[0m                : [0;32mok=22  [0m [0;33mchanged=3   [0m unreachable=0    [0;31mfailed=1   [0m [0;36mskipped=1   [0m rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ vrrp_script check_haproxy {                 
+vrrp_script: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   script "netstat -ntl | grep -q ':88'" 
+Script started, file is netstat -ntl | grep -q ':88'
+  weight 20                              
+  interval 1               
+}
+static_routes {                             
+  192.168.100.0/24 dev enp0s3
+}
+vrrp_instance haproxy {             
+  interface enp0s3
+  virtual_router_id 1
+  {% if inventory_hostname == 'saartanel-1' %}
+  priority 110
+  {% else %}
+  priority 100
+  {% endif %}
+  advert_int 1                           
+  virtual_ipaddress {                 
+      192.168.100.{{ hostvars['saartanel-1']['ansible_default_ipv4']['address'].split('.')[3] }}                    
+  }
+  unicast_peer {
+      {% for vm in groups['haproxy'] %}
+      {% if inventory_hostname != vm %}
+      {{  hostvars[vm]['ansible_default_ipv4']['address']  }}
+      {% endif %}
+      {% endfor %}
+  }
+  track_script {
+      check_haproxy
+  }
+}]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   weight 20                              
+
+Command 'weight' not found, but can be installed with:
+
+sudo apt install biosquid
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   interval 1               
+interval: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ static_routes {                             
+static_routes: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   192.168.100.0/24 dev enp0s3
+bash: 192.168.100.0/24: No such file or directory
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ vrrp_instance haproxy {             
+vrrp_instance: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   interface enp0s3
+interface: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   virtual_router_id 1
+virtual_router_id: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   {% if inventory_hostname == 'saartanel-1' %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   priority 110
+priority: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   {% else %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   priority 100
+priority: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   {% endif %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   advert_int 1                           
+advert_int: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   virtual_ipaddress {                 
+virtual_ipaddress: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       192.168.100.{{ hostvars['saartanel-1']['ansible_default_ipv4']['address'].split('.')[3] }}                     
+bash: syntax error near unexpected token `('
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   unicast_peer {
+unicast_peer: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% for vm in groups['haproxy'] %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% if inventory_hostname != vm %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {{  hostvars[vm]['ansible_default_ipv4']['address']  }}
+{{: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% endif %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       {% endfor %}
+{%: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   track_script {
+track_script: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$       check_haproxy
+check_haproxy: command not found
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$   }
+bash: syntax error near unexpected token `}'
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }vrrp_instance haproxy {             }[Kvrrp_instance haproxy {             }[Kvrrp_instance haproxy {             }[K[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ }vrrp_instance haproxy {             }[Kstatic_routes {                             [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C}[Kssh ubuntu@193.40.156.86 -p14722[10Pcat ~/.ssh/id_rsa.pub [6Pd infra/ica0002..[Kansible-playbook test_ansible.yaml [13Pcat ~/.ssh/id_rsa.pub[C[13@ansible-playbook test_ansible.yaml[C[13Pcat ~/.ssh/id_rsa.pub[C[13@ansible-playbook test_ansible.yaml[C[13Pcat ~/.ssh/id_rsa.pub[C[13@ansible-playbook test_ansible.yaml[C[13Pcat ~/.ssh/id_rsa.pub[Cssh tanelsaar99@35.228.200.101ansible-playbook test_ansible.yaml [13Pcat ~/.ssh/id_rsa.pub[C[6@ansible-playbook infra.yaml[C[7@test_ansible[C[C[C[C[C[C[7Pinfra[C[C[C[C[C[C[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml 
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [setup] *************************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+TASK [bind : Install Bind9] **********************************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : Ensure Bind9 is running] ************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [bind : Copy named.conf.options to /etc/bind] ***********************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : Copy named.conf.local to /etc/bind] *************************************************************************************************
+[0;36mskipping: [saartanel-1][0m
+[0;36mskipping: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : Copy named.conf.local.slave to /etc/bind] *******************************************************************************************
+[0;36mskipping: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [bind : Copy db.toenail to /etc/bind] *******************************************************************************************************
+[0;36mskipping: [saartanel-1][0m
+[0;36mskipping: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind : change resolv.conf] *****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+TASK [bind_records : Create cname records for bind9] *********************************************************************************************
+[0;32mok: [saartanel-3] => (item={'cname': 'ns1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'ns2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'ns3', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'prometheus', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'db1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'db2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'www1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'www2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'grafana', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'influxdb', 'real': 'saartanel-3'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'docker1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'docker2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'haproxy1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'haproxy2', 'real': 'saartanel-2'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'keepalived1', 'real': 'saartanel-1'})[0m
+[0;32mok: [saartanel-3] => (item={'cname': 'keepalived2', 'real': 'saartanel-2'})[0m
+
+TASK [bind_records : Create A record for backup] *************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+TASK [prometheus : Install prometheus] ***********************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [prometheus : Ensure prometheus is running] *************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [prometheus : Copy ARGS file] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [prometheus : Copy jobs file] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+TASK [bind_exporter : Create prometheus group for exporter] **************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind_exporter : Create prometheus user for exporter] ***************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [bind_exporter : Package] *******************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [bind_exporter : Enabled] *******************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Database server] ***************************************************************************************************************************
+
+TASK [mysql : Install mysql] *********************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : Override mysqld config] ************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : MySQL database] ********************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : MySQL user] ************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : Create Replication user] ***********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql : Copy slave script to master] *******************************************************************************************************
+[0;36mskipping: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [mysql_exporter : Create /var/lib/prometheus] ***********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql_exporter : Copy my.cnf] **************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql_exporter : Create /opt/agama] ********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [mysql_exporter : Install mysqld exporter] **************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [mysql_exporter : create MySQL user] ********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+TASK [nginx : update repo cache and update "nginx" to latest] ************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [nginx : copy config file to dst] ***********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [nginx_exporter : Download and untar exporter binary] ***************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [nginx_exporter : Create exporter service] **************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [nginx_exporter : Enable exporter service] **************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [node_exporter : Exporter packages] *********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : No default nginx] **********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : Nginx config] **************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+TASK [haproxy : Install haproxy package] *********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start haproxy service] ***********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [haproxy : HAProxy config] ******************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Install docker.io] ***************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start Docker service] ************************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [haproxy : HAProxy exporter] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+TASK [keepalived : Install Keepalive package] ****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Copy keepalive.conf] **********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Download Keepalived exporter binary] ******************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Create Keepalived service] ****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Enable exporter service] ******************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+TASK [rsyslog : Rsyslog config] ******************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+TASK [influxdb : Install InfluxDB and influxdb-client] *******************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [influxdb : Telegraf package] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [influxdb : Install Telegraf package] *******************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [influxdb : Telegraf config] ****************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Install fping] ********************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Create user pinger] ***************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Create /etc/pinger directory] *****************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Copy pinger.conf] *****************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Download pinger.sh and place it to dest] ******************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Create pinger service] ************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [pinger : Enable pinger service] ************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Docker] ************************************************************************************************************************************
+
+TASK [docker : Install docker.io] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [docker : Start Docker service] *************************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : Exporter packages] *********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : No default nginx] **********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+TASK [node_exporter : Nginx config] **************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+TASK [grafana_docker : Create folder for grafana] ************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [grafana_docker : Create grafana Container] *************************************************************************************************
+[0;33mchanged: [saartanel-3][0m
+
+TASK [grafana_docker : Start grafana Container] **************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+TASK [grafana_docker : Download grafana.db] ******************************************************************************************************
+[0;32mok: [saartanel-3][0m
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+TASK [agama_docker : Create system user named agama] *********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Create directory named agama] ***********************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Download Agama DockerFile] **************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [agama_docker : Build Agama Docker image] ***************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [agama_docker : Create Agama Container] *****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;32msaartanel-1[0m                : [0;32mok=52  [0m changed=0    unreachable=0    failed=0    [0;36mskipped=2   [0m rescued=0    ignored=0   
+[0;32msaartanel-2[0m                : [0;32mok=51  [0m changed=0    unreachable=0    failed=0    [0;36mskipped=3   [0m rescued=0    ignored=0   
+[0;33msaartanel-3[0m                : [0;32mok=47  [0m [0;33mchanged=1   [0m unreachable=0    failed=0    [0;36mskipped=1   [0m rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ [H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -haproxythaproxy
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+TASK [haproxy : Install haproxy package] *********************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start haproxy service] ***********************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : HAProxy config] ******************************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+TASK [haproxy : Install docker.io] ***************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start Docker service] ************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : HAProxy exporter] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start HAProxy exporter cintainer] ************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+RUNNING HANDLER [haproxy : restart haproxy] ******************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+PLAY [Docker] ************************************************************************************************************************************
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;33msaartanel-1[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33msaartanel-2[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-3[0m                : [0;32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -thaproxy[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -thaproxy
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+TASK [haproxy : Install haproxy package] *********************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start haproxy service] ***********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+TASK [haproxy : HAProxy config] ******************************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+TASK [haproxy : Install docker.io] ***************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start Docker service] ************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : HAProxy exporter] ****************************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [haproxy : Start HAProxy exporter cintainer] ************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+RUNNING HANDLER [haproxy : restart haproxy] ******************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+[0;33mchanged: [saartanel-2][0m
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+PLAY [Docker] ************************************************************************************************************************************
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;33msaartanel-1[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;33msaartanel-2[0m                : [0;32mok=9   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-3[0m                : [0;32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ [H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -thaproxy[K[K[K[K[K[Kkeepalive[K[K[K[K[K[K[K[K[K[Kkeeplaive[K[K[K[K[Kalived
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-1][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+TASK [keepalived : Install Keepalive package] ****************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Copy keepalive.conf] **********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;33mchanged: [saartanel-1][0m
+
+TASK [keepalived : Download Keepalived exporter binary] ******************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Create Keepalived service] ****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Enable exporter service] ******************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+RUNNING HANDLER [keepalived : restart keepalived] ************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+
+PLAY [General monitoring] ************************************************************************************************************************
+
+PLAY [Influxdb] **********************************************************************************************************************************
+
+PLAY [Docker] ************************************************************************************************************************************
+
+PLAY [Grafana Docker] ****************************************************************************************************************************
+
+PLAY [Agama Docker] ******************************************************************************************************************************
+
+PLAY RECAP ***************************************************************************************************************************************
+[0;33msaartanel-1[0m                : [0;32mok=7   [0m [0;33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-2[0m                : [0;32mok=6   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+[0;32msaartanel-3[0m                : [0;32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -tkeepalived[Kansible-playbook infra.yaml -tkeepalived[H[2J]0;tanel@TanelMachine: ~/Desktop/infra/local[01;32mtanel@TanelMachine[00m:[01;34m~/Desktop/infra/local[00m$ ansible-playbook infra.yaml -tkeepalived
+
+PLAY [Setup] *************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;32mok: [saartanel-3][0m
+[0;32mok: [saartanel-1][0m
+
+PLAY [Bind9 server] ******************************************************************************************************************************
+
+PLAY [Bind9 records] *****************************************************************************************************************************
+
+PLAY [Prometheus] ********************************************************************************************************************************
+
+PLAY [Bind9 exporter] ****************************************************************************************************************************
+
+PLAY [Database server] ***************************************************************************************************************************
+
+PLAY [Nginx] *************************************************************************************************************************************
+
+PLAY [Haproxy] ***********************************************************************************************************************************
+
+PLAY [Keepalived] ********************************************************************************************************************************
+
+TASK [keepalived : Install Keepalive package] ****************************************************************************************************
+[1;35m[WARNING]: Could not find aptitude. Using apt-get instead[0m
+[1;35m[0m
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Copy keepalive.conf] **********************************************************************************************************
+[0;32mok: [saartanel-2][0m
+[0;33mchanged: [saartanel-1][0m
+
+TASK [keepalived : Download Keepalived exporter binary] ******************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Create Keepalived service] ****************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+TASK [keepalived : Enable exporter service] ******************************************************************************************************
+[0;32mok: [saartanel-1][0m
+[0;32mok: [saartanel-2][0m
+
+RUNNING HANDLER [keepalived : restart keepalived] ************************************************************************************************
+[0;33mchanged: [saartanel-1][0m
+
+PLAY [General monitoring] *************************************************************************************************************

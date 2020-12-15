@@ -1,3 +1,9 @@
+- name: Install fping
+  apt:
+    pkg:
+      - fping
+    update_cache: yes
+
 - name: Create user pinger
   user:
     name: pinger

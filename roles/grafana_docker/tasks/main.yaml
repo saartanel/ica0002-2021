@@ -16,3 +16,19 @@
     env:
       GF_SERVER_ROOT_URL: "http://localhost:{{ grafana_port }}/grafana"
       GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+
+- name: Start grafana Container
+  docker_container:
+    name: grafana
+    state: started
+
+- name: Download grafana.db
+  get_url:
+    url: https://github.com/saartanel/infra/raw/main/grafana.db
+    dest: /home/ubuntu/
+  notify:
+    - Stop grafana Container
+    - Delete default grafana.db
+    - Copy new db file to dest
+    - Grafana.db rights
+    - Start grafana Container
