@@ -1,0 +1,28 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+{% if inventory_hostname in groups['db_servers'][0] %}
+# MySQL master Agama db dump to backup home folder every midnight
+0 0 * * * backup mysqldump agama > /home/backup/backup/agama.sql
+{% endif %}
+
+{% if inventory_hostname in groups['influxdb'] %}
+# Influxdb db dump to backup home folder every midnight
+0 0 * * * backup influxdb backup /home/backup/backup/ && influxd backup -database telegraf /home/backup/backup && influxd backup -database latency /home/backup/backup
+{% endif %}
+
+{% if inventory_hostname in groups['grafana'] %}
+# Copy grafana.db file to backup home folder every midnight
+0 0 * * * backup docker cp Grafana:/var/lib/grafana/grafana.db /home/backup/backup
+{% endif %}
+
+{% if inventory_hostname in groups['prometheus'] %}
+# Prometheus db dump to backup home folder every midnight
+0 0 * * * backup cp -a /var/lib/prometheus /home/backup/backup
+{% endif %}
+
+# Duplicity export to backup server at 1:42AM on sundays
+42 1 * * * 0 backup duplicity --no-encryption full /home/backup/backup/ rsync://saartanel@backup.toenail.ts//home/saartanel/
+
+# Duplicity export to backup server at 1:42AM on monday through saturday
+42 1 * * * 1-6 backup duplicity --no-encryption incremental /home/backup/backup/ rsync://saartanel@backup.toenail.ts//home/saartanel/

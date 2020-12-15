@@ -1,6 +1,52 @@
 - name: Create user backup with SSH key
   user:
     name: backup
+    home: /home/backup
     shell: /bin/bash
     groups: docker
-    generate_ssh_key: yes 
+    generate_ssh_key: yes
+    state: present
+
+- name: Create MySQL backup user
+  mysql_user:
+    name: "backup"
+    password: "{{ mysql_backup_password }}"
+    priv: "{{ mysql_database }}.*:SELECT,LOCK TABLES"
+    host: "%"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  when:
+    - inventory_hostname in groups['db_servers'][0]
+
+- name: Copy MySQL conf file for backup
+  template:
+    src: backup.my.cnf.j2
+    dest: /home/backup/.my.cnf
+    owner: backup
+    group: backup
+    mode: '0400'
+  when:
+    - inventory_hostname in groups['db_servers'][0]
+
+- name: Create backup folder
+  file:
+    path: /home/backup/backup
+    state: directory
+    owner: backup
+    group: backup
+
+- name: Create restore folder
+  file:
+    path: /home/backup/restore
+    state: directory
+    owner: backup
+    group: backup
+
+- name: Copy cron file to hosts
+  template:
+    src: backup
+    dest: /etc/cron.d
+
+- name: Install Duplicity
+  apt:
+    pkg:
+      - duplicity

@@ -60,6 +60,15 @@
   tags:
     - nginx
 
+- name: Docker
+  hosts: docker
+  become: yes
+  gather_facts: no
+  roles:
+    - docker
+  tags:
+    - docker
+
 - name: Haproxy
   hosts: haproxy
   become: yes
@@ -96,16 +105,6 @@
     - pinger
   tags:
     - influxdb
-
-- name: Docker
-  hosts: docker
-  become: yes
-  gather_facts: no
-  roles:
-    - docker
-    - node_exporter
-  tags:
-    - docker
   
 - name: Grafana Docker
   hosts: grafana
@@ -124,3 +123,12 @@
     - agama_docker
   tags:
     - agama_docker
+
+- name: backup
+  hosts: all
+  become: yes
+  gather_facts: no
+  roles:
+    - backup
+  tags:
+    - backup
