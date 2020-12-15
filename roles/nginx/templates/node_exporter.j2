@@ -1,12 +1,6 @@
 server {
 	listen 80 default_server;
 	server_name _;
-  
-	{% if inventory_hostname in groups['dns_masters'] %}
-	location / {
-    return https://thumbs.gfycat.com/CourageousUnsightlyFluke-size_restricted.gif;
-	}
-	{% endif %}
 
 	{% if inventory_hostname in groups['app_servers'] %}
 	location / {

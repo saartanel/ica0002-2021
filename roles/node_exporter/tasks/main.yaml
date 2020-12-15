@@ -5,10 +5,3 @@
       - prometheus-node-exporter
       - nginx
     update_cache: yes
-
-- name: No default nginx
-  file:
-    path: /etc/nginx/sites-enabled/default
-    state: absent
-  notify:
-    - Restart nginx
