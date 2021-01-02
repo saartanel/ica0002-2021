@@ -2,17 +2,17 @@
 
 Infrastructure services (ica0002-2020 autumn semester)
 
-lab1 - done n\
-lab2 - done n\
-lab3 - done n\
-lab4 - done n\
-lab5 - done n\
-lab6 - done n\
-lab7 - done n\
-lab8 - done n\
-lab9 - done n\
-lab10 - done n\
-lab11 - done n\
-lab12 - done n\
-lab13 - done n\
-lab14 - done n\
+lab1 - done \
+lab2 - done \
+lab3 - done \
+lab4 - done \
+lab5 - done \
+lab6 - done \
+lab7 - done \
+lab8 - done \
+lab9 - done \
+lab10 - done \
+lab11 - done \
+lab12 - done \
+lab13 - done \
+lab14 - done \
